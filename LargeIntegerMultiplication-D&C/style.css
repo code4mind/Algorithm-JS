@@ -1,0 +1,195 @@
+*{
+	margin: 0;
+	padding: 0;
+	
+}
+body{
+	background-color: #FCFCFC;
+	width: 960px;
+	position: relative;
+}
+h1{
+	margin-top:40px;
+	margin-left: 640px;
+	width: 400px;
+	font-family:  Microsoft YaHei;
+	color: #00BFFF;
+}
+
+#container{
+	position: absolute;
+	margin: 10px 40px;
+	width: 780px;
+	left: 40px;
+	top:80px;
+	border:solid 5px #BFEFFF;
+}
+#operation{
+	position: relative;
+	width:720px;
+	height: 200px;
+	margin-left: 10px;
+	margin-top:15px;
+	
+}
+#operation>input{
+	display: block;
+	padding: 1px;
+	margin: 10px 40px;
+	width: 240px;
+	height: 40px;
+	border: solid 3px #BFEFFF;
+	border-radius: 2px;
+	font-size: 24px;
+	color: #00B2EE;
+	font-family:  Microsoft YaHei;
+}
+#ina{
+	position: relative;
+	top: 50px;
+}
+#inb{
+	position: relative;
+	left: 420px;
+	top: -8px;
+}
+#cal{
+	display: block;
+	position: relative;
+	left: 350px;
+	bottom:80px;
+	width: 64px;
+	height: 64px;
+	
+}
+#rest{
+	display: block;
+	position: relative;
+	left: 70px;
+	bottom:40px;
+	font-size: 24px;
+	width: 620px;
+	height: 50px;
+	border: solid 3px #BFEFFF;
+	color: #00B2EE;
+	padding: 2px;
+	font-family:  Microsoft YaHei;
+}
+#tasklist{
+	width: 480px;
+	font-family:  Microsoft YaHei;
+	border: solid 5px #BFEFFF;
+	position: absolute;
+	top: 90px;
+	right: -480px;
+	color: #00BFFF;
+}
+#tasklist ul{
+	margin: 20px 20px;
+	border-bottom: solid 2px #BFEFFF;
+}
+#tasklist li{
+	display: inline-block;
+	text-decoration: none;
+	font-size: 32px;
+	margin: 0 70px;
+}
+#record{
+	width: 93%;
+	margin-left: 20px;
+	margin-bottom: 50px;
+}
+#record tr{
+	width: 100%;
+	height: 36px;
+
+}
+#record td{
+	padding:0 72px;
+}
+.item{
+	width: 120px;
+	
+	border-bottom: dotted 2px #BFEFFF;
+}
+#navi{
+	width: 240px;
+	font-size: 32px;
+	border:solid 5px #BFEFFF;
+	position: absolute;
+	left: 80px;
+	top:520px;
+	color: #00BFFF;
+	font-family:  Microsoft YaHei;
+}
+#navi p{
+	display: inline-block;
+}
+#srcoll_up{
+	position: absolute;
+	height: 36px;
+	width: 36px;
+	top:3px;
+	left: 200px;
+}
+#srcoll_down{
+	position: absolute;
+	height: 36px;
+	width: 36px;
+	top:-1px;
+	left: 200px;
+	display: none;
+}
+#process{
+	display: none;
+	position: absolute;
+	margin: 10px 40px;
+	width: 780px;
+	left: 40px;
+	top:556px;
+	border:solid 5px #BFEFFF;
+}
+.no{
+	width: 240px;
+	height: 64px;
+	background-color: #00FFFF;
+	font-size: 48px;
+	font-family: Microsoft YaHei;
+	color: #FFFFF0;
+	
+	margin: 5px;
+}
+.no span{
+	display: inline-block;
+	padding: 5px;
+	float: right;
+
+}
+.des span{
+	color: #00FFFF;
+	font-size: 20px;
+}
+.midres{
+	color: #00FFFF;
+	margin-top: 20px;
+	font-size: 20px;
+	border:none;
+}
+label{
+	display: inline-block;
+	font-size: 24px;
+	border-bottom: dotted 2px #BFEFFF;
+	font-family: Microsoft YaHei;
+	color: #00BFFF;
+}
+#fn{
+	position: absolute;
+	top: 15px;
+	left: 110px;
+
+}
+#sn{
+	position: absolute;
+	top: 15px;
+	left: 520px;
+}
