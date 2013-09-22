@@ -5,6 +5,7 @@
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script type="text/javascript">
 	window._user_count=0;
+	window._user_radio=0;
 	function callFunc (numa,numb) {
 		//console.log("callFunc-->"+numa);
 		//console.log("callFunc-->"+numb);
@@ -113,12 +114,12 @@
 	function BigMulti (rawa,rawb) {
 		var lena=rawa.length;
 		var lenb=rawb.length;
-		while(lena%2!=0){
+		while(lena%_user_radio!=0){
 			rawa="0"+rawa;
 			lena=rawa.length;
 			//console.log("fix lena"+lena);
 		}	
-		while(lenb%2!=0){
+		while(lenb%_user_radio!=0){
 			rawb="0"+rawb;
 			lenb=rawb.length;
 			//console.log("fix lenb"+lenb);
@@ -152,8 +153,11 @@
 		var st=new Date();
 		var na=$("#ina").val();
 		var nb=$("#inb").val();
+		var arglen=na.length;
+		_user_radio=Math.pow(2,Math.ceil(Math.log(arglen))+1);
 		var rr=removeZero(BigMulti(na,nb))
 		//var rr=BigMulti(na,nb);
+
 		$("#rest").val(rr);
 		//console.log(removeZero("0"))
 		//console.log("The ans:"+na*nb);
