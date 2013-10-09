@@ -155,29 +155,32 @@
 		var na=$("#ina").val();
 		var nb=$("#inb").val();
 		var arglen=na.length;
+		if(arglen<nb.length){
+			arglen=nb.length;
+		}
 		_user_radio=Math.pow(2,Math.ceil(Math.log(arglen))+1);
 		var rr=removeZero(BigMulti(na,nb))
-		//var rr=BigMulti(na,nb);
-
+        var fn=new Date();
+		var cost=fn.getTime()-st.getTime();
 		$("#rest").val(rr);
 		//console.log(removeZero("0"))
 		//console.log("The ans:"+na*nb);
 		//console.log(na.substr(0,na.length/2))
-		var fn=new Date();
-		var cost=fn.getTime()-st.getTime();
-		$("#record>tbody").append("<tr ><td class='item'>"+na.length+"</td><td class='item'>"+cost+" ms</td></tr>")
+		
+		$("#record>tbody").append("<tr ><td class='item'>"+arglen+"</td><td class='item'>"+cost+" ms</td></tr>")
 	}
 	function removeZero(src) {
-		if(src.length==1){
+		
+		while("0"==src.toString()[0]){
+			if(src.length==1){
 				return src;
 			}
 		else{
-		while("0"==src.toString()[0]){
-			
 			src=src.slice(1);
 		}
+		}
 		return src;
-	}
+	
 	}
 	function showup () {
 		$("#process").show();

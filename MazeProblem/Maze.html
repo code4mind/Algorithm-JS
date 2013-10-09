@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Maze Problem</title>
+	<style type="text/css">
+	#maze{
+		width: 640px;
+		height: 640px;
+		border:solid 2px cyan;
+		float: left;
+		left: 50px;
+	}
+	#st{
+		font-size: 32px;
+		position: relative;
+		top: 250px;
+		left: 30px;
+		border:solid 5px cyan;
+		color:cyan;
+	}
+	</style>
+	<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+			    OFFSET_X=36,
+				OFFSET_Y=0,
+				SIZE_X=7,
+				SIZE_Y=7,
+				WIDTH=20,
+				HEIGHT=20,
+				EAST=0,
+				SOUTH=1,
+				WEST=2,
+				NORTH=3,
+				FN=4;
+			 visited=new Array();
+			 stack=new Array();
+			 mz=new Array();
+			mz[0]=new Array(0,2,0,0,0,0,0);
+			mz[1]=new Array(0,1,0,0,0,0,0);
+			mz[2]=new Array(0,1,1,1,0,0,0);
+			mz[3]=new Array(0,0,0,1,0,0,0);
+			mz[4]=new Array(0,0,1,1,1,1,0);
+			mz[5]=new Array(0,1,1,0,1,0,0);
+			mz[6]=new Array(0,2,0,0,0,0,0);
+			for(var t=0;t<SIZE_Y;t++){
+				visited[t]=new Array(false);
+			}
+	function point (x,y,state) {
+		this.x=x;
+		this.y=y;
+		this.state=state;
+	}
+	function checkPoint (x,y) {
+		console.log("in checkPoint")
+		return (x>=0&&x<SIZE_Y&&y>=0&&y<SIZE_X);
+	}
+	function pushStack (x,y) {
+		console.log("ck:"+checkPoint(x,y))
+		if(checkPoint(x,y)&&mz[x][y]!=0&&!visited[x][y]){
+			console.log("in pushStack")
+			var p=new point(x,y,EAST);
+			stack.push(p);
+			visited[x][y]=true;
+		}
+	}
+	function isExit (x,y) {
+		return mz[x][y]==2&&x>0;
+	}
+	function drawSprite (x,y,type) {
+		canvas=document.getElementById("maze");
+			context=canvas.getContext("2d");
+		if (type==0) {
+			context.fillStyle="#EE2C2C";
+		}
+		if(type==1){
+			context.fillStyle="#9A32CD";
+		}
+		if(type==2){
+			contex.fillStyle="#FF3030";
+		}
+		context.beginPath();
+		console.log("x:"+parseInt(y*HEIGHT+OFFSET_Y)+" y:"+parseInt(x*WIDTH+OFFSET_X))
+		context.arc(y*HEIGHT+OFFSET_X+HEIGHT/2,x*WIDTH+OFFSET_Y+WIDTH/2,4,0,Math.PI*2,true);
+		context.closePath();
+		context.fill();
+	}
+	function doFindPath () {
+		console.log("in doFindPath")
+		if(stack.length!=0){
+			cur=stack[stack.length-1];
+			var x=cur.x;
+			var y=cur.y;
+			//判断是否成功
+		
+			if(isExit(x,y)){
+				drawSprite(x,y,1);
+				//停止计时器
+				window.alert("finished")
+				clearInterval(minterval)
+				return;
+			}
+			//遍历方向
+			switch(cur.state){
+				case EAST:
+				console.log("in EAST")
+					cur.state=SOUTH;
+					drawSprite(x,y,0);
+					pushStack(x,y+1);
+					break;
+				case SOUTH:
+				console.log("in SOUTH")
+					cur.state=WEST;
+					drawSprite(x,y,0);
+					pushStack(x+1,y);
+					break;
+				case WEST:
+				console.log("in WEST")
+					cur.state=NORTH;
+					drawSprite(x,y,0);
+					pushStack(x,y-1);
+					break;
+				case NORTH:
+				console.log("in NORTH")
+					cur.state=FN;
+					drawSprite(x,y,0);
+					pushStack(x-1,y);
+					break;
+				case FN:
+				console.log("in FN")
+					drawSprite(x,y,1);
+					stack.pop();
+					break;
+			}
+		}
+	}
+	function createMaze () {
+		    canvas=document.getElementById("maze");
+			context=canvas.getContext("2d");
+			
+			for( i=0;i<SIZE_Y;i++){
+				for (j=0; j<SIZE_X; j++) {
+					visited[i][j]=false;
+					if(mz[i][j]==0){
+						context.fillStyle="cyan";						
+					}else
+					if(mz[i][j]==1){
+						context.fillStyle="#00FF00";
+					
+					}else
+					if(mz[i][j]==2){
+						context.fillStyle="#FFFF00";
+						
+					}
+
+					context.fillRect(j*HEIGHT+OFFSET_X,i*WIDTH+OFFSET_Y,WIDTH,HEIGHT);
+				}
+			}
+
+	}
+	function startMaze () {
+		pushStack(0,1);
+		minterval=setInterval("doFindPath()",200);
+	}
+		window.onload=function  () {	
+			createMaze();
+		}
+	</script>
+</head>
+<body>
+<div>
+	<canvas id="maze"></canvas>
+	<button id="st" onclick="startMaze();">START</button>
+</div>
+</body>
+</html>
